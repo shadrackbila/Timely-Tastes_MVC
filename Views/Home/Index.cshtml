@@ -1,0 +1,192 @@
+﻿@model IEnumerable<TimelyTastes.Models.Home>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/site.css">
+    <title>Home</title>
+</head>
+
+<body class="front-page">
+
+
+    <!--Home-->
+    <div class="home-container">
+        <div class="banner-wrapper">
+            <div class="banner-heading">
+                <div>
+                    Enter your location or use GPS
+                </div>
+            </div>
+
+            <div class="form-wrapper">
+
+                <form action="/search" method="GET">
+
+                    <label for="search" class="sr-only">Search</label>
+
+                    <input type="search" id="search" name="q" placeholder="Search..."
+                        class="flex-grow px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)]"
+                        required />
+
+                    <button type="submit"
+                        class="px-4 py-2 bg-[var(--accent-green)] text-white rounded-r-md hover:bg-[var(--accent-green-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)]">
+                        Search
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!--Listing-->
+        <div class="section-card">
+
+            <div class="section-heading">
+                <div>
+                    Recommended Meals
+                </div>
+            </div>
+
+            @foreach (TimelyTastes.Models.Home meal in Model)
+            {
+                <article class="card-wrapper">
+
+                    <div class="logo">
+                        <div class="logo__comp">
+
+                            <div>
+                                <div class="logo__shadow">
+                                    <img src="{{ directory }}/images/rolls.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="logo__rect">
+                                <div></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="distance-rating-container">
+
+                        <div class="distance">
+                            <div>
+                                45km
+                            </div>
+                        </div>
+
+                        <div class="separator">
+                            |
+                        </div>
+
+                        <div class="rating-continer">
+                            <div class="star-img">
+                                <img src="{{ directory }}/images/star.png" alt="">
+                            </div>
+                            <div class="rating">
+                                <div>
+                                    4.7
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card-info">
+
+                        <div class="card-info__image">
+                            <div>
+                                <img src="@meal.ImageUrl" alt="place holder image">
+                            </div>
+                        </div>
+
+                        <div class="card-info__text-details">
+
+                            <div class="card-info__name">
+                                <div>
+                                    @meal.Name
+                                </div>
+                            </div>
+
+                            <div class="card-info__price-section">
+
+                                <div class="card-info__price-block">
+                                    <div class="card-info__discounted-price">
+                                        <div>
+                                            @($"R{meal.DiscountPrice}")
+                                        </div>
+                                    </div>
+
+                                    <div class="card-info__original-price">
+                                        <div>
+                                            @($"R{meal.OriginalPrice}")
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-info__view-link">
+                                    <div>
+                                        <a href="http://localhost:8082/deals">View -></a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="card-info__pickup-info">
+                                Pickup<span class="ml-1">@meal.AvailableFrom.ToString("M/d/yyyy")
+                                    @meal.AvailableFrom.ToString("hh:mm tt")
+                                    @meal.AvailableUntil.ToString("hh:mm tt")</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reserve-buttons">
+                        <div class="buttons reserve-buttons__favourites">
+                            <div>
+                                <a href="">
+                                    <svg id="Layer_1_1_" style="enable-background:new 0 0 16 16;" version="1.1"
+                                        viewBox="0 0 16 16" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <path
+                                            d="M8.612,2.347L8,2.997l-0.612-0.65c-1.69-1.795-4.43-1.795-6.12,0c-1.69,1.795-1.69,4.706,0,6.502l0.612,0.65L8,16  l6.12-6.502l0.612-0.65c1.69-1.795,1.69-4.706,0-6.502C13.042,0.551,10.302,0.551,8.612,2.347z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="buttons reserve-buttons__reserve">
+                            <div>
+                                <a href="http://localhost:8082/order">Reserve Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qs">
+                        <div class="qs__container">
+                            <div class="relative">
+                                <!-- Shadow layer -->
+                                <div class="l-half-shadow"></div>
+
+                                <div class="relative z-10">
+                                    @meal.QuantityAvailable Packs Left
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+            }
+
+        </div>
+    </div>
+
+</body>
+r
+
+</html>
