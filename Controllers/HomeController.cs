@@ -80,10 +80,10 @@ availableUntil: DateTime.Now.AddHours(6)
         return RedirectToAction("Index");
     }
 
-    public ViewResult Extended(int mealID, int vendorID)
+    public ViewResult Extended(int mealID, int vendorID, int dID)
     {
 
-        var viewModel = VendorFoodItemsViewModel.GetVendorFoodItem(mealID, vendorID);
+        var viewModel = VendorFoodItemsViewModel.GetVendorFoodItem(mealID, vendorID, dID);
         if (viewModel == null)
             return NotFound();
 

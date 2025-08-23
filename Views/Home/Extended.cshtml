@@ -117,11 +117,11 @@
             <div class="buttons reserve-buttons__reserve">
                 <div>
                     <a asp-controller="Order" asp-action="Index" asp-route-mealID="@Model.FoodItem.Id"
-                        asp-route-vendorID="@Model.Vendor.VendorID">Reserve Now</a>
+                        asp-route-vendorID="@Model.Vendor.VendorID" asp-route-dID="@Model.Vendor.VendorID">Reserve
+                        Now</a>
                 </div>
             </div>
         </div>
-
 
 
 

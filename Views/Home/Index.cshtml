@@ -133,7 +133,8 @@
                                 <div class="card-info__view-link">
                                     <div>
                                         <a asp-action="Extended" asp-route-mealID="@meal.FoodItem.Id"
-                                            asp-route-vendorID="@meal.Vendor.VendorID">View -></a>
+                                            asp-route-vendorID="@meal.Vendor.VendorID"
+                                            asp-route-dID="@meal.FoodItem.VendorID">View -></a>
                                     </div>
                                 </div>
 
@@ -164,7 +165,8 @@
                         <div class="buttons reserve-buttons__reserve">
                             <div>
                                 <a asp-controller="Order" asp-action="Index" asp-route-mealID="@meal.FoodItem.Id"
-                                    asp-route-vendorID="@meal.Vendor.VendorID">Reserve Now</a>
+                                    asp-route-vendorID="@meal.Vendor.VendorID"
+                                    asp-route-dID="@meal.FoodItem.VendorID">Reserve Now</a>
                             </div>
                         </div>
                     </div>
