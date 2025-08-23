@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TimelyTastes.Models.Home>
+﻿@model IEnumerable<TimelyTastes.Models.VendorFoodItemsViewModel>
 @{
     Layout = null;
 }
@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            @foreach (TimelyTastes.Models.Home meal in Model)
+            @foreach (TimelyTastes.Models.VendorFoodItemsViewModel meal in Model)
             {
                 <article class="card-wrapper">
 
@@ -63,7 +63,7 @@
 
                             <div>
                                 <div class="logo__shadow">
-                                    <img src="{{ directory }}/images/rolls.jpg" alt="">
+                                    <img src="@meal.Vendor.Logo" alt="">
                                 </div>
                             </div>
 
@@ -91,7 +91,7 @@
                             </div>
                             <div class="rating">
                                 <div>
-                                    4.7
+                                    @meal.Vendor.Rating
                                 </div>
                             </div>
                         </div>
@@ -102,7 +102,7 @@
 
                         <div class="card-info__image">
                             <div>
-                                <img src="@meal.ImageUrl" alt="place holder image">
+                                <img src="@meal.FoodItem.ImageUrl" alt="place holder image">
                             </div>
                         </div>
 
@@ -110,7 +110,7 @@
 
                             <div class="card-info__name">
                                 <div>
-                                    @meal.Name
+                                    @meal.FoodItem.Name
                                 </div>
                             </div>
 
@@ -119,29 +119,30 @@
                                 <div class="card-info__price-block">
                                     <div class="card-info__discounted-price">
                                         <div>
-                                            @($"R{meal.DiscountPrice}")
+                                            @($"R{meal.FoodItem.DiscountPrice}")
                                         </div>
                                     </div>
 
                                     <div class="card-info__original-price">
                                         <div>
-                                            @($"R{meal.OriginalPrice}")
+                                            @($"R{meal.FoodItem.OriginalPrice}")
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="card-info__view-link">
                                     <div>
-                                        <a href="http://localhost:8082/deals">View -></a>
+                                        <a asp-action="Extended" asp-route-mealID="@meal.FoodItem.Id"
+                                            asp-route-vendorID="@meal.Vendor.VendorID">View -></a>
                                     </div>
                                 </div>
 
                             </div>
 
                             <div class="card-info__pickup-info">
-                                Pickup<span class="ml-1">@meal.AvailableFrom.ToString("M/d/yyyy")
-                                    @meal.AvailableFrom.ToString("hh:mm tt")
-                                    @meal.AvailableUntil.ToString("hh:mm tt")</span>
+                                Pickup<span class="ml-1">@meal.FoodItem.AvailableFrom.ToString("M/d/yyyy")
+                                    @meal.FoodItem.AvailableFrom.ToString("hh:mm tt")
+                                    @meal.FoodItem.AvailableUntil.ToString("hh:mm tt")</span>
                             </div>
                         </div>
                     </div>
@@ -162,7 +163,8 @@
 
                         <div class="buttons reserve-buttons__reserve">
                             <div>
-                                <a href="http://localhost:8082/order">Reserve Now</a>
+                                <a asp-controller="Order" asp-action="Index" asp-route-mealID="@meal.FoodItem.Id"
+                                    asp-route-vendorID="@meal.Vendor.VendorID">Reserve Now</a>
                             </div>
                         </div>
                     </div>
@@ -174,7 +176,7 @@
                                 <div class="l-half-shadow"></div>
 
                                 <div class="relative z-10">
-                                    @meal.QuantityAvailable Packs Left
+                                    @meal.FoodItem.QuantityAvailable Packs Left
                                 </div>
                             </div>
                         </div>
@@ -187,6 +189,5 @@
     </div>
 
 </body>
-r
 
 </html>

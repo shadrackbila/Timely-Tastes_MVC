@@ -1,0 +1,219 @@
+@model TimelyTastes.Models.VendorFoodItemsViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More-Info</title>
+    <link rel="stylesheet" href="~/css/site.css">
+
+</head>
+<!--Meal Deal Page-->
+
+<body>
+    <div class="meal-deal-container">
+        <div class="full-image-wrapper">
+
+            <div class="distance-rating-wrapper">
+                <div class="distance-rating-container ">
+
+                    <div class="distance">
+                        <div class="pl-3">
+                            45km
+                        </div>
+                    </div>
+
+                    <div class="separator">
+                        |
+                    </div>
+
+                    <div class="rating-continer">
+                        <div class="star-img">
+                            <img src="{{ directory }}/images/star.png" alt="">
+                        </div>
+                        <div class="rating">
+                            <div>
+                                @Model.Vendor.Rating
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="full-image">
+                <img src="@Model.FoodItem.ImageUrl" alt="rolls">
+            </div>
+
+
+            <div class="qs">
+                <div class="qs__container">
+                    <div class="relative">
+
+                        <div class="relative z-10">
+                            @Model.FoodItem.QuantityAvailable Packs Left
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="product">
+            <div class="product__title">
+                @Model.FoodItem.Name
+            </div>
+
+            <div class="card-info__price-block">
+                <div class="card-info__discounted-price">
+                    <div>
+                        @($"R{Model.FoodItem.DiscountPrice}")
+                    </div>
+                </div>
+
+                <div class="card-info__original-price">
+                    <div>
+                        @($"R{Model.FoodItem.OriginalPrice}")
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-info__pickup-info">
+                Pickup<span class="ml-2">@Model.FoodItem.AvailableFrom.ToString("M/d/yyyy")
+                    @Model.FoodItem.AvailableFrom.ToString("hh:mm tt")
+                    @Model.FoodItem.AvailableUntil.ToString("hh:mm tt")</span>
+            </div>
+
+
+            <div class="product__desc">
+                @Model.FoodItem.Description
+            </div>
+
+        </div>
+
+
+        <div class="warning-txt">
+            ❗Contents may vary
+        </div>
+
+        <div class="reserve-buttons">
+            <div class="buttons reserve-buttons__favourites">
+                <div>
+                    <a href="">
+                        <svg id="Layer_1_1_" style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
+                            xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <path
+                                d="M8.612,2.347L8,2.997l-0.612-0.65c-1.69-1.795-4.43-1.795-6.12,0c-1.69,1.795-1.69,4.706,0,6.502l0.612,0.65L8,16  l6.12-6.502l0.612-0.65c1.69-1.795,1.69-4.706,0-6.502C13.042,0.551,10.302,0.551,8.612,2.347z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="buttons reserve-buttons__reserve">
+                <div>
+                    <a asp-controller="Order" asp-action="Index" asp-route-mealID="@Model.FoodItem.Id"
+                        asp-route-vendorID="@Model.Vendor.VendorID">Reserve Now</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    <div class="vendor-info">
+        <div class="vendor-info__title">
+            Vendor Info
+        </div>
+
+        <div class="store">
+            <div class="store__logo">
+                <div>
+                    <img src="@Model.Vendor.Logo" alt="">
+                </div>
+            </div>
+            <div class="store__data">
+                <div>@Model.Vendor.Adress</div>
+                <div>Willows</div>
+            </div>
+        </div>
+
+
+
+        <div class="ratings-container">
+            <div class="ratings__logo">
+                <div>
+                    <img src="{{ directory }}/images/star copy.png" alt="">
+                </div>
+                <div>
+                    @Model.Vendor.Rating
+                </div>
+            </div>
+
+            <div class="ratings__data">
+                <div>Approximately 4.7km away</div>
+                <div>Based on @Model.Vendor.TotalReviews reviews</div>
+                <div>Saved @Model.Vendor.SavedMeals Meals</div>
+            </div>
+
+
+
+        </div>
+
+        <div class="rates-wrapper">
+            <div class="rate-container">
+                <div class="rate-type">
+                    <div>Collection Experience</div>
+                    <div class="w-[26%]"></div>
+                </div>
+                <div>
+                    @Model.Vendor.CollectionExperience
+                </div>
+            </div>
+
+
+            <div class="rate-container">
+                <div class="rate-type">
+                    <div>Food Quality</div>
+                    <div class="w-[100%]"></div>
+                </div>
+                <div>
+                    @Model.Vendor.FoodQuality
+                </div>
+            </div>
+
+            <div class="rate-container">
+                <div class="rate-type">
+                    <div>Food Quantity</div>
+                    <div class="w-[70%]"></div>
+                </div>
+                <div>
+                    @Model.Vendor.FoodQuantity
+                </div>
+            </div>
+
+            <div class="rate-container">
+                <div class="rate-type">
+                    <div>Food Variety</div>
+                    <div class="w-[50%]"></div>
+                </div>
+                <div>
+                    @Model.Vendor.FoodVariety
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>

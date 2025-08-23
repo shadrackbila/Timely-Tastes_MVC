@@ -1,0 +1,35 @@
+using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+using TimelyTastes.Models;
+
+namespace TimelyTastes.Controllers;
+
+public class VendorsController : Controller
+{
+
+    public IActionResult AddVendor()
+    {
+        VendorsRepository.Add(new Vendors(
+            shopId: 101,
+            vendorID: 101,
+            logo: "data:image/png;base64,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",
+            name: "Gourmet Grill",
+            bio: "A food vendor specializing in grilled meats.",
+            adress: "456 Oak Ave, Cityville",
+            shopOwnerName: "Jane Doe"
+        ));
+
+        VendorsRepository.Add(new Vendors(
+            shopId: 101,
+            vendorID: 102,
+            logo: "https://www.sunninghillsquare.co.za/wp-content/uploads/2018/02/The-Square-Shopping-Centre-Sunninghill-Sandton-Checkers-Portfolio.jpg",
+            name: "Checkers",
+            bio: "We sell nice food.",
+            adress: "20 President Band street",
+            shopOwnerName: "cloe"
+        ));
+
+        return RedirectToAction("AddListing", "Home");
+    }
+
+}

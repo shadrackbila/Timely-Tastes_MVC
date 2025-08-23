@@ -15,7 +15,23 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        var meals = HomeRepository.foodItemsList;
+
+        List<VendorFoodItemsViewModel> meals = new List<VendorFoodItemsViewModel>();
+
+        foreach (var foodItem in HomeRepository.foodItemsList)
+        {
+            var vendor = VendorsRepository.vendorsList.FirstOrDefault(f => f.VendorID == foodItem.VendorID);
+
+            if (vendor != null)
+            {
+                meals.Add(new VendorFoodItemsViewModel
+                {
+                    FoodItem = foodItem,
+                    Vendor = vendor
+                });
+            }
+        }
+
         return View(meals);
     }
 
@@ -34,7 +50,49 @@ public class HomeController : Controller
     availableUntil: DateTime.Now.AddHours(6)
 ));
 
+        HomeRepository.Add(new Home(
+            id: 2,
+            vendorID: 102,
+            imageUrl: "https://flouringkitchen.com/wp-content/uploads/2023/07/BW1A4089-2.jpg",
+            name: "Strawberry Cake",
+            description: "A light and fluffy sponge cake layered with fresh strawberries and whipped cream, topped with juicy strawberry slices and a drizzle of sweet strawberry glaze. Perfectly sweet, fruity, and irresistible for any occasion.",
+            discountPrice: 105.00m,
+            originalPrice: 200.00m,
+            quantityAvailable: 10,
+            availableFrom: DateTime.Now,
+            availableUntil: DateTime.Now.AddHours(6)
+        ));
+
+        HomeRepository.Add(new Home(
+id: 3,
+vendorID: 101,
+imageUrl: "https://www.kikkoman.eu/fileadmin/_processed_/4/2/csm_sushi-kakkoii_2c56fe3133.webp",
+name: "Sushi",
+description: "Juicy beef burger with melted cheese",
+discountPrice: 45.00m,
+originalPrice: 60.00m,
+quantityAvailable: 10,
+availableFrom: DateTime.Now,
+availableUntil: DateTime.Now.AddHours(6)
+));
+
+
         return RedirectToAction("Index");
+    }
+
+    public ViewResult Extended(int mealID, int vendorID)
+    {
+
+        var viewModel = VendorFoodItemsViewModel.GetVendorFoodItem(mealID, vendorID);
+        if (viewModel == null)
+            return NotFound();
+
+        return View(viewModel);
+    }
+
+    public ViewResult NotFound()
+    {
+        return View();
     }
 
     public IActionResult Privacy()

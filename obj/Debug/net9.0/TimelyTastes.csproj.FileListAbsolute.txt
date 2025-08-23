@@ -21,7 +21,6 @@
 /Users/cash/Desktop/TT/TimelyTastes/obj/Debug/net9.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
 /Users/cash/Desktop/TT/TimelyTastes/obj/Debug/net9.0/scopedcss/bundle/TimelyTastes.styles.css
 /Users/cash/Desktop/TT/TimelyTastes/obj/Debug/net9.0/scopedcss/projectbundle/TimelyTastes.bundle.scp.css
-/Users/cash/Desktop/TT/TimelyTastes/obj/Debug/net9.0/compressed/9jz4eceu3b-xgo08ehs0j.gz
 /Users/cash/Desktop/TT/TimelyTastes/obj/Debug/net9.0/compressed/i2kwawhrwf-61n19gt1b8.gz
 /Users/cash/Desktop/TT/TimelyTastes/obj/Debug/net9.0/compressed/bsihti3nrj-xtxxf3hu2r.gz
 /Users/cash/Desktop/TT/TimelyTastes/obj/Debug/net9.0/compressed/yhffgroela-bqjiyaj88i.gz
@@ -94,3 +93,5 @@
 /Users/cash/Desktop/TT/TimelyTastes/obj/Debug/net9.0/TimelyTastes.pdb
 /Users/cash/Desktop/TT/TimelyTastes/obj/Debug/net9.0/TimelyTastes.genruntimeconfig.cache
 /Users/cash/Desktop/TT/TimelyTastes/obj/Debug/net9.0/ref/TimelyTastes.dll
+/Users/cash/Desktop/TT/TimelyTastes/obj/Debug/net9.0/TimelyTastes.sourcelink.json
+/Users/cash/Desktop/TT/TimelyTastes/obj/Debug/net9.0/compressed/9jz4eceu3b-kbdct74v1i.gz
