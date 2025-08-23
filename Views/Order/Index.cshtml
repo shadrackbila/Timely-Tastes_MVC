@@ -46,7 +46,13 @@
 
             </div>
 
-            <form action="">
+            <form asp-controller="Order" asp-action="PayWithPayFast" method="post">
+                <input type="hidden" name="itemName" value="@Model.FoodItem.Name" />
+                @*  <input type="hidden" name="quantity" value="1" /> *@
+
+                <input type="hidden" name="amount" value="@Model.FoodItem.DiscountPrice" />
+
+
                 <div class="terms-conditions">
                     <label>
                         <input type="checkbox" name="terms-of-service" value="yes" required
